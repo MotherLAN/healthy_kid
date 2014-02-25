@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
                    for (int i = 0; i < nut.size(); i++)
                        s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i);
                    //updateTextView(s);
-                   TextView tv = (TextView) view
+                   //TextView tv = (TextView) view;
                } catch (IOException e) {
                    nut = null;
                    e.printStackTrace();
