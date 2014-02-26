@@ -20,9 +20,6 @@
       <config />
     </shared>
   </component>
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.app" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="17cd5e3c-ebf6-4582-83c3-652e6dab6bdb" name="Default" comment="" />
     <ignored path="My Application 4.iws" />
