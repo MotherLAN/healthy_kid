@@ -1,6 +1,5 @@
 package com.example.app;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,7 +26,6 @@ public class MainActivity extends ActionBarActivity {
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
                 nut = NutritionAPIRequester.getNutrition(bar);
                 String s = "";
                 for (int i = 0; i < nut.size(); i++)
-                    s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i);
+                    s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i) + "\n";
                 /* cannot set text here, because the Activity will be inactive,
                 and then Android will throw a NullPointerException */
             } catch (IOException e) {
@@ -89,5 +87,4 @@ public class MainActivity extends ActionBarActivity {
             return inflater.inflate(R.layout.fragment_main, container, false);
         }
     }
-
 }
