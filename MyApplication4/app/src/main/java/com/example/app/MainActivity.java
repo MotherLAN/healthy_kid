@@ -56,7 +56,7 @@ public class MainActivity extends ActionBarActivity {
             String bar = scanResult.getContents();
             ArrayList nut;
             try {
-                nut = new NutritionAPIRequester(bar).getNutrition();
+                nut = NutritionAPIRequester.getNutrition(bar);
                 String s = "";
                 for (int i = 0; i < nut.size(); i++)
                     s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i);

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
     private ArrayList<String> nutrVals;
 
-    public RetrieveNutritionTask(NutritionAPIRequester n) {
+    public RetrieveNutritionTask() {
         super();
         nutrVals = new ArrayList<String>();
     }
