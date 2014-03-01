@@ -25,7 +25,7 @@ class NutritionAPIRequester {
             query += '&' + vars[i] + '=' + values[i];
         query = query.substring(1);
 
-        RetrieveNutritionTask r =  new RetrieveNutritionTask(this);
+        RetrieveNutritionTask r =  new RetrieveNutritionTask();
         r.execute(URL + "?" + query);
 
         return r.getNutrVals();
