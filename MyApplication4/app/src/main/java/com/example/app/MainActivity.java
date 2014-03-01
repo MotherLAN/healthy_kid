@@ -60,7 +60,8 @@ public class MainActivity extends ActionBarActivity {
                 String s = "";
                 for (int i = 0; i < nut.size(); i++)
                     s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i);
-                //TextView tv = (TextView) view;
+                /* cannot set text here, because the Activity will be inactive,
+                and then Android will throw a NullPointerException */
             } catch (IOException e) {
                 e.printStackTrace();
             }
