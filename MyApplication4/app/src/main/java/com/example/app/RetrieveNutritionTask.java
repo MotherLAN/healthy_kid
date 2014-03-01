@@ -15,12 +15,10 @@ import java.net.URL;
 import java.util.ArrayList;
 
 class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
-    private NutritionAPIRequester nut;
     private ArrayList<String> nutrVals;
 
     public RetrieveNutritionTask(NutritionAPIRequester n) {
         super();
-        nut = n;
         nutrVals = new ArrayList<String>();
     }
 
@@ -54,9 +52,16 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
         }
         JsonNode dataset = node.get("response").get("data");
 
-        nut.setVals(nutrVals);
+        // if (connection.getResponseMessage().equals("OK")) {
+        //
+        // }
+
         for (JsonNode j : dataset)
             for (String n : NutritionAPIRequester.NUTRIENTS)
                 nutrVals.add(j.path(n).toString());
+    }
+
+    protected ArrayList<String> getNutrVals(){
+        return nutrVals;
     }
 }
