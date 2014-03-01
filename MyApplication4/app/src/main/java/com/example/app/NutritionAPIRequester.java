@@ -14,16 +14,7 @@ class NutritionAPIRequester {
     private static final String KEY = "v9AM5yVkdkdPUi7OnuzeKAbCideeimaG0nLZFP6t";
     private static final String URL = "http://api.v3.factual.com/t/products-cpg-nutrition";
 
-    private ArrayList<String> nutrVals;
-    private String upc;
-
-    public NutritionAPIRequester(String upc) throws IOException {
-        this.upc = upc;
-        nutrVals = new ArrayList<String>();
-        getNutrition();
-    }
-
-    protected ArrayList<String> getNutrition() throws IOException {
+    public static ArrayList<String> getNutrition(String upc) throws IOException {
         String query = "";
         String[] vars = new String[]{"q", "KEY"};
         String[] values = new String[]{upc, KEY};
@@ -34,20 +25,14 @@ class NutritionAPIRequester {
             query += '&' + vars[i] + '=' + values[i];
         query = query.substring(1);
 
-        new RetrieveNutritionTask(this).execute(URL + "?" + query);
+        RetrieveNutritionTask r =  new RetrieveNutritionTask(this);
+        r.execute(URL + "?" + query);
 
-        // if (connection.getResponseMessage().equals("OK")) {
-        //
-        // }
-        return nutrVals;
-    }
-
-    public void setVals(ArrayList<String> v) {
-        nutrVals = v;
+        return r.getNutrVals();
     }
 
     public static void main(String... args) throws IOException {
-        out.println(new NutritionAPIRequester("04913207").getNutrition());
-        out.println(new NutritionAPIRequester("04043108").getNutrition());
+        out.println(getNutrition("04913207"));
+        out.println(getNutrition("04043108"));
     }
 }
