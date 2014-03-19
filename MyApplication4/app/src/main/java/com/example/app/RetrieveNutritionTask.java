@@ -1,5 +1,7 @@
 package com.example.app;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -16,13 +18,19 @@ import java.util.ArrayList;
 
 class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
     private ArrayList<String> nutrVals;
+    Context c;
 
-    public RetrieveNutritionTask() {
+    public RetrieveNutritionTask(Context c) {
         super();
+        this.c = c;
         nutrVals = new ArrayList<String>();
     }
 
     protected StringWriter doInBackground(String... urls) {
+        if (!isConnected()) {
+            return null;
+        }
+
         DataInputStream input = null;
         try {
             URL url = new URL(urls[0]);
@@ -64,5 +72,11 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
 
     ArrayList<String> getNutrVals() {
         return nutrVals;
+    }
+
+    boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager)c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected()
+                || cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected();
     }
 }

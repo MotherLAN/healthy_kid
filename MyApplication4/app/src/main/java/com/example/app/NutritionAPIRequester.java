@@ -1,5 +1,7 @@
 package com.example.app;
 
+import android.content.Context;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,7 +16,7 @@ class NutritionAPIRequester {
     private static final String KEY = "v9AM5yVkdkdPUi7OnuzeKAbCideeimaG0nLZFP6t";
     private static final String URL = "http://api.v3.factual.com/t/products-cpg-nutrition";
 
-    public static ArrayList<String> getNutrition(String upc) {
+    public static ArrayList<String> getNutrition(String upc, Context c) {
         String query = "";
         String[] vars = new String[]{"q", "KEY"};
         String[] values = new String[]{upc, KEY};
@@ -25,14 +27,14 @@ class NutritionAPIRequester {
             query += '&' + vars[i] + '=' + values[i];
         query = query.substring(1);
 
-        RetrieveNutritionTask r = new RetrieveNutritionTask();
+        RetrieveNutritionTask r = new RetrieveNutritionTask(c);
         r.execute(URL + "?" + query);
 
         return r.getNutrVals();
     }
 
     public static void main(String... args) throws IOException {
-        out.println(getNutrition("04913207"));
-        out.println(getNutrition("04043108"));
+        out.println(getNutrition("04913207", null));
+        out.println(getNutrition("04043108", null));
     }
 }
