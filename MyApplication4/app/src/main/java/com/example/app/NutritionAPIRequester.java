@@ -14,7 +14,7 @@ class NutritionAPIRequester {
     private static final String KEY = "v9AM5yVkdkdPUi7OnuzeKAbCideeimaG0nLZFP6t";
     private static final String URL = "http://api.v3.factual.com/t/products-cpg-nutrition";
 
-    public static ArrayList<String> getNutrition(String upc) throws IOException {
+    public static ArrayList<String> getNutrition(String upc) {
         String query = "";
         String[] vars = new String[]{"q", "KEY"};
         String[] values = new String[]{upc, KEY};
@@ -25,7 +25,7 @@ class NutritionAPIRequester {
             query += '&' + vars[i] + '=' + values[i];
         query = query.substring(1);
 
-        RetrieveNutritionTask r =  new RetrieveNutritionTask();
+        RetrieveNutritionTask r = new RetrieveNutritionTask();
         r.execute(URL + "?" + query);
 
         return r.getNutrVals();
