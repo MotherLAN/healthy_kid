@@ -52,7 +52,7 @@ public class MainActivity extends ActionBarActivity {
         if (scanResult != null) {
             String bar = scanResult.getContents();
             ArrayList nut;
-            nut = NutritionAPIRequester.getNutrition(bar);
+            nut = NutritionAPIRequester.getNutrition(bar, this);
             String s = "";
             for (int i = 0; i < nut.size(); i++)
                 s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i) + "\n";
@@ -75,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
         //   startActivity(i);
     }
 
-    private class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
