@@ -50,6 +50,7 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         JsonNode dataset = node.get("response").get("data");
 
         // if (connection.getResponseMessage().equals("OK")) {
@@ -61,7 +62,7 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
                 nutrVals.add(j.path(n).toString());
     }
 
-    protected ArrayList<String> getNutrVals(){
+    ArrayList<String> getNutrVals() {
         return nutrVals;
     }
 }
