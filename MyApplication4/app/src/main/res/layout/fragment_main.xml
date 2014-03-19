@@ -11,7 +11,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Barcode"
+        android:text="@string/main_button_text_barcode"
         android:id="@+id/button"
         android:onClick="selfDestruct"
         android:layout_marginBottom="71dp"
@@ -22,7 +22,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maps"
+        android:text="@string/main_button_text_map"
         android:id="@+id/button2"
         android:onClick="nuke"
         android:layout_alignTop="@+id/button"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="@string/main_textview"
         android:id="@+id/textView"
         android:layout_above="@+id/button2"
         android:layout_alignParentRight="true"
