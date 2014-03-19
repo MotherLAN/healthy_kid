@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
@@ -53,16 +52,12 @@ public class MainActivity extends ActionBarActivity {
         if (scanResult != null) {
             String bar = scanResult.getContents();
             ArrayList nut;
-            try {
-                nut = NutritionAPIRequester.getNutrition(bar);
-                String s = "";
-                for (int i = 0; i < nut.size(); i++)
-                    s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i) + "\n";
+            nut = NutritionAPIRequester.getNutrition(bar);
+            String s = "";
+            for (int i = 0; i < nut.size(); i++)
+                s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i) + "\n";
                 /* cannot set text here, because the Activity will be inactive,
                 and then Android will throw a NullPointerException */
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
         //Toast.makeText(MainActivity.this, nut.toString(), Toast.LENGTH_SHORT).show();
