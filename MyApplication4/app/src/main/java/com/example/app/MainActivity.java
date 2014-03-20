@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,13 +52,15 @@ public class MainActivity extends ActionBarActivity {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult != null) {
             String bar = scanResult.getContents();
-            ArrayList nut;
-            nut = NutritionAPIRequester.getNutrition(bar, this);
+            Log.d("barcode UPC", bar);
+            ArrayList<String> nut = NutritionAPIRequester.getNutrition(bar, this);
             String s = "";
             for (int i = 0; i < nut.size(); i++)
                 s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i) + "\n";
                 /* cannot set text here, because the Activity will be inactive,
                 and then Android will throw a NullPointerException */
+            Log.d("nutrition size:", "" + nut.size());
+            Log.d("nutrition", s);
         }
 
         //Toast.makeText(MainActivity.this, nut.toString(), Toast.LENGTH_SHORT).show();
