@@ -18,8 +18,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 class RetrieveNutritionTask extends AsyncTask<String, Void, ArrayList<String>> {
-    private ArrayList<String> nutrVals;
     Context c;
+    private ArrayList<String> nutrVals;
 
     public RetrieveNutritionTask(Context c) {
         super();
@@ -76,7 +76,7 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, ArrayList<String>> {
     }
 
     boolean isConnected() {
-        ConnectivityManager cm = (ConnectivityManager)c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected()
                 || cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected();
     }
