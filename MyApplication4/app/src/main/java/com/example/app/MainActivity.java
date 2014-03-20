@@ -55,8 +55,11 @@ public class MainActivity extends ActionBarActivity {
             Log.d("barcode UPC", bar);
             ArrayList<String> nut = NutritionAPIRequester.getNutrition(bar, this);
             String s = "";
-            for (int i = 0; i < nut.size(); i++)
-                s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i) + "\n";
+            for (int i = 0; i < nut.size(); i++) {
+                String val = nut.get(i);
+                if(val.length() > 0 && !val.equals("0"))
+                    s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i) + "\n";
+            }
                 /* cannot set text here, because the Activity will be inactive,
                 and then Android will throw a NullPointerException */
             Log.d("nutrition size:", "" + nut.size());
@@ -73,7 +76,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void nuke(View v) {
-        updateTextView("abcd");
+        updateTextView(getResources().getString(R.string.main_textview_updated));
         //    Intent i = new Intent(MainActivity.this,Maptivity.class);
         //   startActivity(i);
     }

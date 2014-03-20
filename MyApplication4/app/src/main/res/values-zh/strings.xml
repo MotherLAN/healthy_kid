@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application 4</string>
+    <string name="action_settings">设置</string>
+    <string name="main_button_text_barcode">条码扫描器</string>
+    <string name="main_button_text_map">地图</string>
+    <string name="main_textview">默认/缺省文本</string>
+    <string name="main_textview_updated">更新的文本</string>
+    <string name="map_button_retrieve_location">更新位置</string>
+</resources>

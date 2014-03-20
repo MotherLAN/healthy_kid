@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">My Application 4</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_servive">Servive</string>
-    <string name="main_button_text_barcode">Barcode</string>
+    <string name="main_button_text_barcode">Barcode Scanner</string>
     <string name="main_button_text_map">Map</string>
-    <string name="main_textview">Large Text</string>
-    <string name="map_button_retrieve_location">Retrieve Location</string>
+    <string name="main_textview">Default Text</string>
+    <string name="main_textview_updated">Updated Text</string>
+    <string name="map_button_retrieve_location">Update Location</string>
 </resources>
