@@ -52,8 +52,16 @@ public class MainActivity extends ActionBarActivity {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult != null) {
             String bar = scanResult.getContents();
+            if (bar == null) {
+                Log.w("MainActivity", "Barcode not scanned");
+                return;
+            }
             Log.d("barcode UPC", bar);
             ArrayList<String> nut = NutritionAPIRequester.getNutrition(bar, this);
+            if (nut == null) {
+                Log.w(this.getClass().getName(), "No nutritional info available");
+                return;
+            }
             String s = "";
             for (int i = 0; i < nut.size(); i++) {
                 String val = nut.get(i);
@@ -64,6 +72,7 @@ public class MainActivity extends ActionBarActivity {
                 and then Android will throw a NullPointerException */
             Log.d("nutrition size:", "" + nut.size());
             Log.d("nutrition", s);
+            updateTextView("new");
         }
 
         //Toast.makeText(MainActivity.this, nut.toString(), Toast.LENGTH_SHORT).show();
@@ -76,7 +85,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void nuke(View v) {
-        updateTextView(getResources().getString(R.string.main_textview_updated));
+        updateTextView(getString(R.string.main_textview_updated));
         //    Intent i = new Intent(MainActivity.this,Maptivity.class);
         //   startActivity(i);
     }

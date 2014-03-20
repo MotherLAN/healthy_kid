@@ -40,7 +40,10 @@ class NutritionAPIRequester {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        Log.d("Final nutr-vals", nutrVals.toString());
+        if (nutrVals == null)
+            Log.w("NutritionAPIRequester", "Not a food item");
+        else
+            Log.d("Final nutr-vals", nutrVals.toString());
         return nutrVals;
     }
 
