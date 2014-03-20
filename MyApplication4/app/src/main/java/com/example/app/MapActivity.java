@@ -47,7 +47,7 @@ public class MapActivity extends Activity {
         if (location != null) {
             String message = String.format(
                     "Current Location \n Longitude: %1$s \n Latitude: %2$s",
-                    location.getLongitude(), location.getLatitude() );
+                    location.getLongitude(), location.getLatitude());
             Toast.makeText(MapActivity.this, message,
                     Toast.LENGTH_LONG).show();
         }
@@ -64,10 +64,12 @@ public class MapActivity extends Activity {
             Toast.makeText(MapActivity.this, message, Toast.LENGTH_LONG).show();
 
         }
+
         public void onStatusChanged(String s, int i, Bundle b) {
             Toast.makeText(MapActivity.this, "Provider status changed",
                     Toast.LENGTH_LONG).show();
         }
+
         public void onProviderDisabled(String s) {
             Toast.makeText(MapActivity.this,
                     "Provider disabled by the user. GPS turned off",
