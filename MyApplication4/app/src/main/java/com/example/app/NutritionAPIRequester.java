@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static java.lang.System.out;
 
@@ -31,7 +32,16 @@ class NutritionAPIRequester {
         RetrieveNutritionTask r = new RetrieveNutritionTask(c);
         r.execute(URL + "?" + query);
 
-        return r.getNutrVals();
+        ArrayList<String> nutrVals = null;
+        try {
+            nutrVals = r.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        Log.d("Final nutr-vals", nutrVals.toString());
+        return nutrVals;
     }
 
     public static void main(String... args) throws IOException {

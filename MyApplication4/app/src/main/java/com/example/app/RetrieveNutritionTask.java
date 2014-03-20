@@ -17,7 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
+class RetrieveNutritionTask extends AsyncTask<String, Void, ArrayList<String>> {
     private ArrayList<String> nutrVals;
     Context c;
 
@@ -27,7 +27,7 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
         nutrVals = new ArrayList<String>();
     }
 
-    protected StringWriter doInBackground(String... urls) {
+    protected ArrayList<String> doInBackground(String... urls) {
         if (!isConnected()) {
             Log.w("RetrieveNutritionTask.doInBackground()", "Not connected");
             return null;
@@ -49,10 +49,7 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return writer;
-    }
 
-    protected void onPostExecute(StringWriter writer) {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = null;
         try {
