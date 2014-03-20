@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.example.app.MapActivity" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -27,9 +29,6 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyD3YGD4P23QXvZWfQ8Rf4r4VDMh9i3qj_8" />
 
-        <activity
-            android:name="com.example.app.Servive"
-            android:label="@string/title_activity_servive"></activity>
     </application>
 
 </manifest>
