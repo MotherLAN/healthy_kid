@@ -3,6 +3,7 @@ package com.example.app;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,6 +29,7 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
 
     protected StringWriter doInBackground(String... urls) {
         if (!isConnected()) {
+            Log.w("RetrieveNutritionTask.doInBackground()", "Not connected");
             return null;
         }
 
@@ -55,22 +57,24 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, StringWriter> {
         JsonNode node = null;
         try {
             node = mapper.readTree(writer.toString());
+            Log.d("writer", writer.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        if (node == null) {
+            Log.w("RetrieveNutritionTask.onPostExecute()", "node is null");
+            return null;
+        }
         JsonNode dataset = node.get("response").get("data");
-
-        // if (connection.getResponseMessage().equals("OK")) {
-        //
-        // }
+        Log.d("data", dataset.toString());
 
         for (JsonNode j : dataset)
-            for (String n : NutritionAPIRequester.NUTRIENTS)
-                nutrVals.add(j.path(n).toString());
-    }
-
-    ArrayList<String> getNutrVals() {
+            for (String n : NutritionAPIRequester.NUTRIENTS) {
+                String s = j.path(n).toString();
+                nutrVals.add(s);
+                Log.d("adding nutrition-value", n + '/' + s);
+            }
         return nutrVals;
     }
 
