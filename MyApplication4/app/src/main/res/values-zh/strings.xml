@@ -4,7 +4,25 @@
     <string name="action_settings">设置</string>
     <string name="main_button_text_barcode">条码扫描器</string>
     <string name="main_button_text_map">地图</string>
-    <string name="main_textview">默认/缺省文本</string>
+    <string name="main_textview_default">默认/缺省文本</string>
     <string name="main_textview_updated">更新的文本</string>
     <string name="map_button_retrieve_location">更新位置</string>
+
+    <string name="calcium">鈣</string>
+    <string name="calories">卡路里</string>
+    <string name="cholesterol">胆固醇</string>
+    <string name="fiber">膳食纤维</string>
+    <string name="fat_calories">Calories from Fat</string>
+    <string name="iron">铁</string>
+    <string name="potassium">钾</string>
+    <string name="protein">蛋白质</string>
+    <string name="sat_fat">饱和脂肪</string>
+    <string name="sodium">钠</string>
+    <string name="sugar">食糖</string>
+    <string name="carb">总数糖类</string>
+    <string name="fat">总数脂肪</string>
+    <string name="trans_fat">反式脂肪</string>
+    <string name="vitamin_a">维生素A</string>
+    <string name="vitamin_c">维生素C</string>
+    <string name="servings">食用分量</string>
 </resources>
