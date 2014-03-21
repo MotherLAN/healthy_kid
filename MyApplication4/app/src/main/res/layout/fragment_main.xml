@@ -15,8 +15,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="71dp"
-        android:onClick="selfDestruct"
+        android:layout_marginBottom="10dp"
+        android:onClick="scanBarcode"
         android:text="@string/main_button_text_barcode" />
 
     <Button
@@ -39,7 +39,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="@string/main_textview"
+        android:text="@string/main_textview_default"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

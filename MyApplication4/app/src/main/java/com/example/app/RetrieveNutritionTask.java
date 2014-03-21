@@ -15,19 +15,19 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.HashMap;
 
-class RetrieveNutritionTask extends AsyncTask<String, Void, ArrayList<String>> {
-    Context c;
-    private ArrayList<String> nutrVals;
+class RetrieveNutritionTask extends AsyncTask<String, Void, HashMap<Nutrient, String>> {
+    Context context;
+    private HashMap<Nutrient, String> nutrVals;
 
-    public RetrieveNutritionTask(Context c) {
+    public RetrieveNutritionTask(Context context) {
         super();
-        this.c = c;
-        nutrVals = new ArrayList<String>();
+        this.context = context;
+        nutrVals = new HashMap<Nutrient, String>();
     }
 
-    protected ArrayList<String> doInBackground(String... urls) {
+    protected HashMap<Nutrient, String> doInBackground(String... urls) {
         if (!isConnected()) {
             Log.w("RetrieveNutritionTask.doInBackground()", "Not connected");
             return null;
@@ -63,20 +63,22 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, ArrayList<String>> {
             Log.w("RetrieveNutritionTask.onPostExecute()", "node is null");
             return null;
         }
+
         JsonNode dataset = node.get("response").get("data");
         Log.d("data", dataset.toString());
 
-        for (JsonNode j : dataset)
-            for (String n : NutritionAPIRequester.NUTRIENTS) {
-                String s = j.path(n).toString();
-                nutrVals.add(s);
-                Log.d("adding nutrition-value", n + '/' + s);
+        for (JsonNode key : dataset)
+            for (Nutrient nutrient : Nutrient.values()) {
+                String request = nutrient.request;
+                String s = key.path(request).toString();
+                nutrVals.put(nutrient, s);
+                Log.d("adding nutrition-value", request + '/' + s);
             }
         return nutrVals;
     }
 
     boolean isConnected() {
-        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected()
                 || cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected();
     }

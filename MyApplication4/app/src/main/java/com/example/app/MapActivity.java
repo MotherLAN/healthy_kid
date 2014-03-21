@@ -53,6 +53,7 @@ public class MapActivity extends Activity {
         }
     }
 
+    @SuppressWarnings("NonStaticInnerClassInSecureContext")
     private class MyLocationListener implements LocationListener {
         public void onLocationChanged(Location location) {
             String message = String.format(
