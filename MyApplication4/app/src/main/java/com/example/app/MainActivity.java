@@ -1,6 +1,7 @@
 package com.example.app;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -46,17 +47,24 @@ public class MainActivity extends ActionBarActivity {
         return item.getItemId() == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
     protected void updateTextView(String toThis) {
         TextView mytextView = (TextView) findViewById(R.id.textView);
-        mytextView.setText(toThis);
+        if (mytextView != null)
+            mytextView.setText(toThis);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult != null) {
-            String bar = scanResult.getContents();
-            if (bar == null) {
-                Log.w("MainActivity", "Barcode not scanned");
+            String barcode = scanResult.getContents();
+            if (barcode == null) {
+                Log.w(getClass().getName(), "Barcode not scanned");
                 return;
             }
             Log.d("barcode UPC", barcode);
