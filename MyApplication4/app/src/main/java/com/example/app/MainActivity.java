@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends ActionBarActivity {
+    HashMap<Nutrient, String> nutrients;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        displayNutritionalInfo();
     }
 
     @Override
@@ -56,32 +59,40 @@ public class MainActivity extends ActionBarActivity {
                 Log.w("MainActivity", "Barcode not scanned");
                 return;
             }
-            Log.d("barcode UPC", bar);
-            ArrayList<String> nut = NutritionAPIRequester.getNutrition(bar, this);
-            if (nut == null) {
-                Log.w(this.getClass().getName(), "No nutritional info available");
-                return;
-            }
-            String s = "";
-            for (int i = 0; i < nut.size(); i++) {
-                String val = nut.get(i);
-                if(val.length() > 0 && !val.equals("0"))
-                    s += NutritionAPIRequester.NUTRIENTS[i] + ": " + nut.get(i) + "\n";
-            }
-                /* cannot set text here, because the Activity will be inactive,
-                and then Android will throw a NullPointerException */
-            Log.d("nutrition size:", "" + nut.size());
-            Log.d("nutrition", s);
-            updateTextView("new");
+            Log.d("barcode UPC", barcode);
+            nutrients = NutritionAPIRequester.getNutrition(barcode, this);
+            displayNutritionalInfo();
         }
 
-        //Toast.makeText(MainActivity.this, nut.toString(), Toast.LENGTH_SHORT).show();
+        // Toast.makeText(MainActivity.this, nut.toString(), Toast.LENGTH_SHORT).show();
     }
-    // else continue with any other code you need in the method
 
-    public void selfDestruct(View v) {
+    public void scanBarcode(View v) {
         IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
         integrator.initiateScan();
+    }
+
+    public void displayNutritionalInfo() {
+        if (nutrients == null) {
+            updateTextView(getString(R.string.main_textview_default));
+            Log.w(getClass().getName(), "No nutritional info available");
+            return;
+        }
+        String s = "";
+        for (Nutrient nutrient : Nutrient.values()) {
+            String val = nutrients.get(nutrient);
+            if (val.length() > 0 && !val.equals("0"))
+                s += getString(nutrient.display) + ": " + val + nutrient.unit + "\n";
+        }
+        Log.d("nutrition size:", "" + nutrients.size());
+
+        updateTextView(s);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        displayNutritionalInfo();
     }
 
     public void nuke(View v) {

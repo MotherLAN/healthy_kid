@@ -3,22 +3,16 @@ package com.example.app;
 import android.content.Context;
 import android.util.Log;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 import static java.lang.System.out;
 
 class NutritionAPIRequester {
-    public static final String[] NUTRIENTS = new String[]{"calcium",
-            "calories", "cholesterol", "dietary_fiber", "fat_calories", "iron",
-            "potassium", "protein", "sat_fat", "sodium", "sugars",
-            "total_carb", "total_fat", "trans_fat", "vitamin_a", "vitamin_c",
-            "servings"};
     private static final String KEY = "v9AM5yVkdkdPUi7OnuzeKAbCideeimaG0nLZFP6t";
     private static final String URL = "http://api.v3.factual.com/t/products-cpg-nutrition";
 
-    public static ArrayList<String> getNutrition(String upc, Context c) {
+    public static HashMap<Nutrient, String> getNutrition(String upc, Context context) {
         String query = "";
         String[] vars = new String[]{"q", "KEY"};
         String[] values = new String[]{upc, KEY};
@@ -29,10 +23,10 @@ class NutritionAPIRequester {
             query += '&' + vars[i] + '=' + values[i];
         query = query.substring(1);
 
-        RetrieveNutritionTask r = new RetrieveNutritionTask(c);
+        RetrieveNutritionTask r = new RetrieveNutritionTask(context);
         r.execute(URL + "?" + query);
 
-        ArrayList<String> nutrVals = null;
+        HashMap<Nutrient, String> nutrVals = null;
         try {
             nutrVals = r.get();
         } catch (InterruptedException e) {
@@ -47,7 +41,7 @@ class NutritionAPIRequester {
         return nutrVals;
     }
 
-    public static void main(String... args) throws IOException {
+    public static void main(String... args) {
         out.println(getNutrition("04913207", null));
         out.println(getNutrition("04043108", null));
     }
