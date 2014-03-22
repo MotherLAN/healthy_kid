@@ -50,7 +50,22 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
+//        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+//        SharedPreferences.Editor editor = preferences.edit();
+        FieldSerializer.saveObject(nutrients, "nutrientMap", getPreferences(MODE_PRIVATE).edit());
+//        editor.clear();
+//        editor.putString("Nutrition", "a");
+//        Set<String> set = new HashSet<String>();
+//        set.addAll(nutrients);
+//        editor.putStringSet("key", set);
+//        editor.commit();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        nutrients = FieldSerializer.loadObject("nutrientMap", getPreferences(MODE_PRIVATE));
+        displayNutritionalInfo();
     }
 
     protected void updateTextView(String toThis) {
