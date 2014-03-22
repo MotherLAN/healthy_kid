@@ -1,9 +1,9 @@
 package com.example.app;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -24,10 +24,12 @@ public final class FieldSerializer {
         editor.commit();
     }
 
-    public static <T> T loadObject(String name, SharedPreferences preferences) {
+    public static <T> T loadObject(String name, SharedPreferences preferences, Class<T> tClass) {
         T t = null;
         try {
-            t = new ObjectMapper().readValue(preferences.getString(name, null), new TypeReference<T>(){}.getClass());
+            String s = preferences.getString(name, null);
+            Log.d("FieldSerializer", s);
+            t = new ObjectMapper().readValue(s, tClass);
         } catch (IOException e) {
             e.printStackTrace();
         }

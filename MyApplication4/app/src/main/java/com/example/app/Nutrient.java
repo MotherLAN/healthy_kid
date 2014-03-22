@@ -4,12 +4,12 @@ package com.example.app;
  * An enum for all the nutrients
  */
 public enum Nutrient {
-    CALCIUM("calcium", R.string.calcium, "g"),
+    CALCIUM("calcium", R.string.calcium, "%"),
     CALORIES("calories", R.string.calories, ""),
     CHOLESTEROL("cholesterol", R.string.cholesterol, "mg"),
     FIBER("dietary_fiber", R.string.fiber, "g"),
     FAT_CALORIES("fat_calories", R.string.fat_calories, ""),
-    IRON("iron", R.string.iron, "g"),
+    IRON("iron", R.string.iron, "%"),
     POTASSIUM("potassium", R.string.potassium, "g"),
     PROTEIN("protein", R.string.protein, "g"),
     SATURATED_FAT("sat_fat", R.string.sat_fat, "g"),
@@ -22,13 +22,25 @@ public enum Nutrient {
     VITAMIN("vitamin_c", R.string.vitamin_c, "%"),
     SERVINGS("servings", R.string.servings, "");
 
-    final String request;
-    final int display;
-    final String unit;
+    private final String request;
+    private final int display;
+    private final String unit;
 
     Nutrient(String request, int display, String unit) {
         this.request = request;
         this.display = display;
         this.unit = unit;
+    }
+
+    public String getRequest() {
+        return request;
+    }
+
+    public int getDisplay() {
+        return display;
+    }
+
+    public String getUnit() {
+        return unit;
     }
 }
