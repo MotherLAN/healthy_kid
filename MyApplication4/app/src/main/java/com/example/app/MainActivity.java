@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends ActionBarActivity {
     HashMap<String, String> nutrients;
@@ -65,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         nutrients = FieldSerializer.loadObject("nutrientMap", getPreferences(MODE_PRIVATE),
-                new HashMap<Nutrient, String>().getClass());
+                new HashMap<String, String>().getClass());
         displayNutritionalInfo();
     }
 
@@ -98,17 +97,17 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void displayNutritionalInfo() {
-        if (nutrients == null) {
+        if (nutrients == null || nutrients.size() == 0) {
             updateTextView(getString(R.string.main_textview_default));
             Log.w(getClass().getName(), "No nutritional info available");
             return;
         }
         Log.d("nutrition size:", "" + nutrients.size());
-        String s = "";
+        String s = getString(R.string.product_name) +": " + nutrients.get("NAME") + '\n';
         for (Nutrient nutrient : Nutrient.values()) {
             String val = nutrients.get(nutrient.name());
             if (val.length() > 0 && !val.equals("0"))
-            s += getString(nutrient.getDisplay()) + ": " + val + nutrient.getUnit() + "\n";
+                s += getString(nutrient.getDisplay()) + ": " + val + nutrient.getUnit() + '\n';
         }
         updateTextView(s);
     }

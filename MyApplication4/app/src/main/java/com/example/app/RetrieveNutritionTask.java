@@ -67,13 +67,18 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, HashMap<String, Stri
         JsonNode dataset = node.get("response").get("data");
         Log.d("data", dataset.toString());
 
-        for (JsonNode key : dataset)
+        for (JsonNode key : dataset) {
+            String brand = key.path("brand").toString();
+            String product_name = key.path("product_name").toString();
+            nutrVals.put("NAME", brand.substring(1, brand.length() - 1) + ' ' +
+                    product_name.substring(1, product_name.length() - 1));
             for (Nutrient nutrient : Nutrient.values()) {
                 String request = nutrient.getRequest();
                 String s = key.path(request).toString();
                 nutrVals.put(nutrient.name(), s);
                 Log.d("adding nutrition-value", request + '/' + s);
             }
+        }
         return nutrVals;
     }
 

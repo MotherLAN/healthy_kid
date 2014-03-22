@@ -33,8 +33,6 @@ public final class FieldSerializer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        finally {
-            return t;
-        }
+        return t;
     }
 }
