@@ -17,17 +17,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 
-class RetrieveNutritionTask extends AsyncTask<String, Void, HashMap<Nutrient, String>> {
+class RetrieveNutritionTask extends AsyncTask<String, Void, HashMap<String, String>> {
     Context context;
-    private HashMap<Nutrient, String> nutrVals;
+    private HashMap<String, String> nutrVals;
 
     public RetrieveNutritionTask(Context context) {
         super();
         this.context = context;
-        nutrVals = new HashMap<Nutrient, String>();
+        nutrVals = new HashMap<String, String>();
     }
 
-    protected HashMap<Nutrient, String> doInBackground(String... urls) {
+    protected HashMap<String, String> doInBackground(String... urls) {
         if (!isConnected()) {
             Log.w("RetrieveNutritionTask.doInBackground()", "Not connected");
             return null;
@@ -69,9 +69,9 @@ class RetrieveNutritionTask extends AsyncTask<String, Void, HashMap<Nutrient, St
 
         for (JsonNode key : dataset)
             for (Nutrient nutrient : Nutrient.values()) {
-                String request = nutrient.request;
+                String request = nutrient.getRequest();
                 String s = key.path(request).toString();
-                nutrVals.put(nutrient, s);
+                nutrVals.put(nutrient.name(), s);
                 Log.d("adding nutrition-value", request + '/' + s);
             }
         return nutrVals;

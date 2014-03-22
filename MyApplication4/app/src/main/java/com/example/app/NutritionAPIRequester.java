@@ -12,7 +12,7 @@ class NutritionAPIRequester {
     private static final String KEY = "v9AM5yVkdkdPUi7OnuzeKAbCideeimaG0nLZFP6t";
     private static final String URL = "http://api.v3.factual.com/t/products-cpg-nutrition";
 
-    public static HashMap<Nutrient, String> getNutrition(String upc, Context context) {
+    public static HashMap<String, String> getNutrition(String upc, Context context) {
         String query = "";
         String[] vars = new String[]{"q", "KEY"};
         String[] values = new String[]{upc, KEY};
@@ -26,7 +26,7 @@ class NutritionAPIRequester {
         RetrieveNutritionTask r = new RetrieveNutritionTask(context);
         r.execute(URL + "?" + query);
 
-        HashMap<Nutrient, String> nutrVals = null;
+        HashMap<String, String> nutrVals = null;
         try {
             nutrVals = r.get();
         } catch (InterruptedException e) {

@@ -14,9 +14,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends ActionBarActivity {
-    HashMap<Nutrient, String> nutrients;
+    HashMap<String, String> nutrients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,6 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-        displayNutritionalInfo();
     }
 
     @Override
@@ -64,7 +64,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        nutrients = FieldSerializer.loadObject("nutrientMap", getPreferences(MODE_PRIVATE));
+        nutrients = FieldSerializer.loadObject("nutrientMap", getPreferences(MODE_PRIVATE),
+                new HashMap<Nutrient, String>().getClass());
         displayNutritionalInfo();
     }
 
@@ -84,6 +85,7 @@ public class MainActivity extends ActionBarActivity {
             }
             Log.d("barcode UPC", barcode);
             nutrients = NutritionAPIRequester.getNutrition(barcode, this);
+            onPause();
             displayNutritionalInfo();
         }
 
@@ -101,14 +103,13 @@ public class MainActivity extends ActionBarActivity {
             Log.w(getClass().getName(), "No nutritional info available");
             return;
         }
+        Log.d("nutrition size:", "" + nutrients.size());
         String s = "";
         for (Nutrient nutrient : Nutrient.values()) {
-            String val = nutrients.get(nutrient);
+            String val = nutrients.get(nutrient.name());
             if (val.length() > 0 && !val.equals("0"))
-                s += getString(nutrient.display) + ": " + val + nutrient.unit + "\n";
+            s += getString(nutrient.getDisplay()) + ": " + val + nutrient.getUnit() + "\n";
         }
-        Log.d("nutrition size:", "" + nutrients.size());
-
         updateTextView(s);
     }
 
