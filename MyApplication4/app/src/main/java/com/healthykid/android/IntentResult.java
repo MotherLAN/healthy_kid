@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.app;
+package com.healthykid.android;
 
 /**
  * <p>Encapsulates the result of a barcode scan invoked through {@link IntentIntegrator}.</p>

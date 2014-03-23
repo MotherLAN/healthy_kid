@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.app">
+    package="com.healthykid.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_launcher_temp"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.app.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:configChanges="orientation|screenSize|locale">
             <intent-filter>
@@ -21,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.app.MapActivity" />
+        <activity android:name=".MapActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
