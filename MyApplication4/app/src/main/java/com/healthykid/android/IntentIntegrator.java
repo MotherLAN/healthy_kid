@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.app;
+package com.healthykid.android;
 
 import android.app.Activity;
 import android.app.AlertDialog;

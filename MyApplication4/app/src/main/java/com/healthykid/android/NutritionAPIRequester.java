@@ -1,4 +1,4 @@
-package com.example.app;
+package com.healthykid.android;
 
 import android.content.Context;
 import android.util.Log;

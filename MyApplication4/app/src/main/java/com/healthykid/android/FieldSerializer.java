@@ -1,4 +1,4 @@
-package com.example.app;
+package com.healthykid.android;
 
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -28,8 +28,10 @@ public final class FieldSerializer {
         T t = null;
         try {
             String s = preferences.getString(name, null);
-            Log.d("FieldSerializer", s);
-            t = new ObjectMapper().readValue(s, tClass);
+            if(s != null) {
+                Log.d("FieldSerializer", s);
+                t = new ObjectMapper().readValue(s, tClass);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

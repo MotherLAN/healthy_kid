@@ -1,4 +1,4 @@
-package com.example.app;
+package com.healthykid.android;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -106,7 +106,7 @@ public class MainActivity extends ActionBarActivity {
         String s = getString(R.string.product_name) +": " + nutrients.get("NAME") + '\n';
         for (Nutrient nutrient : Nutrient.values()) {
             String val = nutrients.get(nutrient.name());
-            if (val.length() > 0 && !val.equals("0"))
+            if (val != null && val.length() > 0 && !val.equals("0"))
                 s += getString(nutrient.getDisplay()) + ": " + val + nutrient.getUnit() + '\n';
         }
         updateTextView(s);
@@ -119,9 +119,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void nuke(View v) {
-        updateTextView(getString(R.string.main_textview_updated));
-        //    Intent i = new Intent(MainActivity.this,Maptivity.class);
-        //   startActivity(i);
+        //updateTextView(getString(R.string.main_textview_updated));
+        Intent i = new Intent(MainActivity.this, MapActivity.class);
+        startActivity(i);
     }
 
     public static class PlaceholderFragment extends Fragment {

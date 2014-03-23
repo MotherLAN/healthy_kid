@@ -32,4 +32,8 @@ dependencies {
     compile files('src/main/java/com/example/app/jackson-databind-2.3.1.jar')
     compile files('src/main/java/com/example/app/commons-io-2.4.jar')
     compile files('src/main/java/com/example/app/mysql-connector-java-5.1.29-bin.jar')
+    compile files('src/main/java/com/healthykid/commons-io-2.4.jar')
+    compile files('src/main/java/com/healthykid/jackson-annotations-2.3.1.jar')
+    compile files('src/main/java/com/healthykid/jackson-core-2.3.1.jar')
+    compile files('src/main/java/com/healthykid/jackson-databind-2.3.1.jar')
 }
