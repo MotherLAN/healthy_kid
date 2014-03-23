@@ -13,7 +13,7 @@
     <string name="calories">能量</string>
     <string name="cholesterol">膽固醇</string>
     <string name="fiber">膳食纖維</string>
-    <string name="fat_calories">Calories from Fat</string>
+    <string name="fat_calories">來自脂肪的能量</string>
     <string name="iron">鐵</string>
     <string name="potassium">鉀</string>
     <string name="protein">蛋白質</string>
@@ -22,6 +22,8 @@
     <string name="sugar">糖</string>
     <string name="carb">碳水化合物</string>
     <string name="fat">總脂肪</string>
+    <string name="monounsat_fat">單元不飽和脂肪</string>
+    <string name="polyunsat_fat">多元不飽和脂肪</string>
     <string name="trans_fat">反式脂肪</string>
     <string name="vitamin_a">維生素A</string>
     <string name="vitamin_c">維生素C</string>

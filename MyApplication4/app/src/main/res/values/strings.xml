@@ -21,6 +21,8 @@
     <string name="sodium">Sodium</string>
     <string name="sugar">Sugars</string>
     <string name="carb">Total Carbohydrates</string>
+    <string name="monounsat_fat">Monounsaturated Fats</string>
+    <string name="polyunsat_fat">Polyunsaturated Fats</string>
     <string name="fat">Total Fat</string>
     <string name="trans_fat">Trans Fat</string>
     <string name="vitamin_a">Vitamin A</string>
