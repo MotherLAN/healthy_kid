@@ -35,12 +35,13 @@ public class MapActivity extends Activity {
         retrieveLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCurrentLocation();
+                Location location = showCurrentLocation();
+                
             }
         });
     }
 
-    protected void showCurrentLocation() {
+    protected Location showCurrentLocation() {
 
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
@@ -51,6 +52,7 @@ public class MapActivity extends Activity {
             Toast.makeText(MapActivity.this, message,
                     Toast.LENGTH_LONG).show();
         }
+        return location;
     }
 
     @SuppressWarnings("NonStaticInnerClassInSecureContext")
