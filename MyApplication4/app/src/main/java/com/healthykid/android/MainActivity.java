@@ -87,11 +87,9 @@ public class MainActivity extends ActionBarActivity {
             onPause();
             displayNutritionalInfo();
         }
-
-        // Toast.makeText(MainActivity.this, nut.toString(), Toast.LENGTH_SHORT).show();
     }
 
-    public void scanBarcode(View v) {
+    public void startBarcodeScanner(View v) {
         IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
         integrator.initiateScan();
     }
@@ -118,8 +116,7 @@ public class MainActivity extends ActionBarActivity {
         displayNutritionalInfo();
     }
 
-    public void nuke(View v) {
-        //updateTextView(getString(R.string.main_textview_updated));
+    public void startMapActivity(View v) {
         Intent i = new Intent(MainActivity.this, MapActivity.class);
         startActivity(i);
     }
