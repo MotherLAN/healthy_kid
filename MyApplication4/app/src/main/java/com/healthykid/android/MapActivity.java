@@ -40,40 +40,52 @@ public class MapActivity extends Activity {
             @Override
             public void onClick(View v) {
                 LatLng latLng = showCurrentLatLng();
-                GoogleMap googleMap = ((MapFragment) getFragmentManager().
-                        findFragmentById(R.id.map)).getMap();
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 12);
-                googleMap.animateCamera(cameraUpdate);
-                googleMap.addMarker(new MarkerOptions().position(latLng)
-                        .title(getString(R.string.map_current_location)));
+                if (latLng.latitude < 90) {
+                    GoogleMap googleMap = ((MapFragment) getFragmentManager().
+                            findFragmentById(R.id.map)).getMap();
+                    if (googleMap != null) {
+                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 13);
+                        googleMap.animateCamera(cameraUpdate);
+                        googleMap.addMarker(new MarkerOptions().position(latLng)
+                                .title(getPositionString(R.string.map_current_location, latLng)));
+                    }
+                }
             }
         });
     }
 
     protected LatLng showCurrentLatLng() {
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        double latitude = location.getLatitude(), longitude = location.getLongitude();
+        double latitude = Double.MAX_VALUE, longitude = Double.MAX_VALUE;
 
         if (location != null) {
-            String message = String.format(getString(R.string.map_current_location) + "\n" +
-                    getString(R.string.map_longitude) + ":\t%1$s\n" +
-                    getString(R.string.map_latitude) + ":\t%2$s", latitude, longitude);
-            Toast.makeText(MapActivity.this, message, Toast.LENGTH_LONG).show();
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            Toast.makeText(MapActivity.this, getPositionString(R.string.map_current_location,
+                    latitude, longitude), Toast.LENGTH_LONG).show();
         }
         return new LatLng(latitude, longitude);
+    }
+
+    private String getPositionString(int locationID, double latitude, double longitude) {
+        return String.format(getString(locationID) + "\n" + getString(R.string.map_longitude) +
+                        ": \t%03.4f\n" + getString(R.string.map_latitude) + ": \t%03.4f",
+                latitude, longitude);
+    }
+
+    private String getPositionString(int locationID, LatLng latLng) {
+        return getPositionString(locationID, latLng.latitude, latLng.longitude);
+    }
+
+    private String getPositionString(int locationID, Location location) {
+        return getPositionString(locationID, location.getLatitude(), location.getLongitude());
     }
 
     @SuppressWarnings("NonStaticInnerClassInSecureContext")
     private class MyLocationListener implements LocationListener {
         public void onLocationChanged(Location location) {
-            String message = String.format(
-                    "New Location \n Longitude: %1$s \n Latitude: %2$s",
-                    location.getLongitude(), location.getLatitude()
-
-            );
-
-            Toast.makeText(MapActivity.this, message, Toast.LENGTH_LONG).show();
-
+            Toast.makeText(MapActivity.this, getPositionString(R.string.map_new_location,
+                    location), Toast.LENGTH_LONG).show();
         }
 
         public void onStatusChanged(String s, int i, Bundle b) {
