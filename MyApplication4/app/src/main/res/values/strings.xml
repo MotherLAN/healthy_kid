@@ -5,7 +5,6 @@
     <string name="main_button_text_barcode">Barcode Scanner</string>
     <string name="main_button_text_map">Map</string>
     <string name="main_textview_default">Default Text</string>
-    <string name="main_textview_updated">Updated Text</string>
     <string name="map_button_retrieve_location">Update Location</string>
     <string name="map_current_location">Current Location</string>
     <string name="map_new_location">New Location</string>

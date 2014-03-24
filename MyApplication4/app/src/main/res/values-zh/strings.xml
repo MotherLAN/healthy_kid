@@ -5,7 +5,6 @@
     <string name="main_button_text_barcode">条码扫描器</string>
     <string name="main_button_text_map">地图</string>
     <string name="main_textview_default">默认/缺省文本</string>
-    <string name="main_textview_updated">更新的文本</string>
     <string name="map_button_retrieve_location">更新位置</string>
 
     <string name="product_name">产品名称</string>
