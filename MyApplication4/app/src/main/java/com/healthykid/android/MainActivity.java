@@ -32,7 +32,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -49,15 +48,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
-//        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-//        SharedPreferences.Editor editor = preferences.edit();
         FieldSerializer.saveObject(nutrients, "nutrientMap", getPreferences(MODE_PRIVATE).edit());
-//        editor.clear();
-//        editor.putString("Nutrition", "a");
-//        Set<String> set = new HashSet<String>();
-//        set.addAll(nutrients);
-//        editor.putStringSet("key", set);
-//        editor.commit();
     }
 
     @Override
@@ -117,8 +108,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void startMapActivity(View v) {
-        Intent i = new Intent(MainActivity.this, MapActivity.class);
-        startActivity(i);
+        Intent intent = new Intent(MainActivity.this, MapActivity.class);
+        startActivity(intent);
     }
 
     public static class PlaceholderFragment extends Fragment {
