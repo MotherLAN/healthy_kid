@@ -16,8 +16,6 @@ class NutritionAPIRequester {
         String query = "";
         String[] vars = new String[]{"q", "KEY"};
         String[] values = new String[]{upc, KEY};
-        // 04913207 is the UPC code for a sprite can
-        // 04043108 is m&m's
 
         for (int i = 0; i < vars.length; i++)
             query += '&' + vars[i] + '=' + values[i];
@@ -42,7 +40,7 @@ class NutritionAPIRequester {
     }
 
     public static void main(String... args) {
-        out.println(getNutrition("04913207", null));
-        out.println(getNutrition("04043108", null));
+        out.println(getNutrition("04913207", null)); // Sprite
+        out.println(getNutrition("04043108", null)); // M&M's
     }
 }

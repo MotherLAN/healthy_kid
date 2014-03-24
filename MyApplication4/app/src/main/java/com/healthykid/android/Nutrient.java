@@ -40,15 +40,9 @@ public enum Nutrient {
         this.unit = unit;
     }
 
-    public String getRequest() {
-        return request;
-    }
+    public String getRequest() { return request; }
 
-    public int getDisplay() {
-        return display;
-    }
+    public int getDisplay() { return display; }
 
-    public String getUnit() {
-        return unit;
-    }
+    public String getUnit() { return unit; }
 }

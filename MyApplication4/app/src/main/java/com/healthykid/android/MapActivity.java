@@ -88,18 +88,18 @@ public class MapActivity extends Activity {
                     location), Toast.LENGTH_LONG).show();
         }
 
-        public void onStatusChanged(String s, int i, Bundle b) {
+        public void onStatusChanged(String provider, int status, Bundle extras) {
             Toast.makeText(MapActivity.this, "Provider status changed",
                     Toast.LENGTH_LONG).show();
         }
 
-        public void onProviderDisabled(String s) {
+        public void onProviderDisabled(String provider) {
             Toast.makeText(MapActivity.this,
                     "Provider disabled by the user. GPS turned off",
                     Toast.LENGTH_LONG).show();
         }
 
-        public void onProviderEnabled(String s) {
+        public void onProviderEnabled(String provider) {
             Toast.makeText(MapActivity.this,
                     "Provider enabled by the user. GPS turned on",
                     Toast.LENGTH_LONG).show();
