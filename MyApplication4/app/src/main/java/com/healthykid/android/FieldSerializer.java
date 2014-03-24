@@ -12,7 +12,8 @@ import java.io.IOException;
  * Serializes any objects that aren't boxed primitives using JSON
  */
 public final class FieldSerializer {
-    private FieldSerializer() {}
+    private FieldSerializer() {
+    }
 
     public static <T> void saveObject(T t, String name, SharedPreferences.Editor editor) {
         editor.clear();
@@ -28,7 +29,7 @@ public final class FieldSerializer {
         T t = null;
         try {
             String s = preferences.getString(name, null);
-            if(s != null) {
+            if (s != null) {
                 Log.d("FieldSerializer", s);
                 t = new ObjectMapper().readValue(s, tClass);
             }

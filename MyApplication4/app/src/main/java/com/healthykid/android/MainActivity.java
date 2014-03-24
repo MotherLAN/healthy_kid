@@ -103,7 +103,7 @@ public class MainActivity extends ActionBarActivity {
             return;
         }
         Log.d("nutrition size:", "" + nutrients.size());
-        String s = getString(R.string.product_name) +": " + nutrients.get("NAME") + '\n';
+        String s = getString(R.string.product_name) + ": " + nutrients.get("NAME") + '\n';
         for (Nutrient nutrient : Nutrient.values()) {
             String val = nutrients.get(nutrient.name());
             if (val != null && val.length() > 0 && !val.equals("0"))
