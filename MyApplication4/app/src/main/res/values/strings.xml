@@ -8,6 +8,7 @@
     <string name="main_textview_updated">Updated Text</string>
     <string name="map_button_retrieve_location">Update Location</string>
     <string name="map_current_location">Current Location</string>
+    <string name="map_new_location">New Location</string>
     <string name="map_latitude">Latitude</string>
     <string name="map_longitude">Longitude</string>
 
